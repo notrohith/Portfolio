@@ -394,3 +394,181 @@ html{
     position: relative;
     left: -20px;
 }
+@media (max-width: 1199.98px) {
+    .footer h1 {
+        font-size: 140px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .heading h4 {
+        font-size: 50px;
+    }
+    
+    .hero-content h1 {
+        font-size: 50px;
+    }
+    
+    .hero-img img {
+        width: 400px;
+        height: 500px;
+    }
+    
+    .footer h1 {
+        font-size: 100px;
+    }
+    
+    .about p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .heading {
+        padding: 60px 0px;
+    }
+    
+    .heading h4 {
+        font-size: 40px;
+    }
+    
+    .hero-content h1 {
+        font-size: 40px;
+    }
+    
+    .hero-img img {
+        width: 350px;
+        height: 450px;
+        margin-top: 30px;
+    }
+    
+    .portfolio-card {
+        margin-bottom: 30px;
+    }
+    
+    .footer h1 {
+        font-size: 70px;
+    }
+    
+    .about p {
+        font-size: 20px;
+    }
+    
+    .blog h2 {
+        font-size: 24px;
+    }
+    
+    .contact-info {
+        margin-bottom: 30px;
+    }
+    
+    .testinomials {
+        margin-bottom: 20px;
+    }
+    
+    .blog {
+        margin-bottom: 20px;
+    }
+    
+    .blog img {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .heading {
+        padding: 40px 0px;
+    }
+    
+    .heading h4 {
+        font-size: 30px;
+    }
+    
+    .heading h6 {
+        font-size: 14px;
+    }
+    
+    .hero-content h1 {
+        font-size: 30px;
+    }
+    
+    .hero-img img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .footer h1 {
+        font-size: 50px;
+    }
+    
+    .about p {
+        font-size: 18px;
+    }
+    
+    .blog h2 {
+        font-size: 20px;
+    }
+    
+    .contact-form button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .my-resume h3 {
+        font-size: 28px;
+    }
+    
+    .testinomials h2 {
+        font-size: 20px;
+    }
+    
+    .portfolio-content h4 {
+        font-size: 18px;
+    }
+    
+    .contact-info .address h3 {
+        font-size: 18px;
+    }
+    
+    .social {
+        justify-content: center;
+    }
+    
+    .skill {
+        text-align: center;
+    }
+    
+    .skill .row {
+        justify-content: center;
+    }
+    
+    .count h2 {
+        font-size: 20px;
+    }
+    
+    .count p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer h1 {
+        font-size: 40px;
+    }
+    
+    .hero-content h1 {
+        font-size: 26px;
+    }
+    
+    .about p {
+        font-size: 16px;
+    }
+    
+    .blog h2 {
+        font-size: 18px;
+    }
+    
+    .testinomials h2 {
+        font-size: 18px;
+    }
+}
