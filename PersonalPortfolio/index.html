@@ -33,7 +33,7 @@
 </head>
 <body>
   <!-- ----header----- -->
-  <nav class="navbar navbar-expand-lg fixed-navbar">
+  <nav class="navbar navbar-expand-lg fixed-navbar sticky-top">
       <div class="container">
       <a class="navbar-brand fw-bolder" href="index.html">My Portfolio</a>
       <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas"
@@ -545,14 +545,12 @@
         const subjectInput = contactForm.querySelector('input[name="subject"]');
         const messageInput = contactForm.querySelector('textarea[name="message"]');
         
-        // Reset all error states
         [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
           input.classList.remove('is-invalid');
         });
         
         let isValid = true;
         
-        // Name validation - only letters and spaces allowed
         const nameValue = nameInput.value.trim();
         if (!nameValue) {
           showError(nameInput, 'Name is required');
@@ -565,7 +563,6 @@
           isValid = false;
         }
         
-        // Email validation
         const emailValue = emailInput.value.trim();
         if (!emailValue) {
           showError(emailInput, 'Email is required');
@@ -575,7 +572,6 @@
           isValid = false;
         }
         
-        // Subject validation - only letters, spaces and basic punctuation allowed
         const subjectValue = subjectInput.value.trim();
         if (!subjectValue) {
           showError(subjectInput, 'Subject is required');
@@ -588,7 +584,6 @@
           isValid = false;
         }
         
-        // Message validation
         const messageValue = messageInput.value.trim();
         if (!messageValue) {
           showError(messageInput, 'Message is required');
@@ -621,6 +616,37 @@
         errorElement.textContent = message;
       }
     });
+  </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+        if (window.innerWidth <= 991.98) {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = '-72px';
+            } else {
+                navbar.style.top = '0'; 
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+    });
+    
+    const navLinks = document.querySelectorAll('.nav-link');
+    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasNavbar'));
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (offcanvas) {
+                offcanvas.hide();
+            }
+        });
+    });
+});
   </script>
 </body>
 </html>
