@@ -531,7 +531,7 @@
       backSpeed: 150,
       loop: true
     });
-    document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
       const contactForm = document.getElementById('contactForm');
       const errorMessage = document.querySelector('.error');
       
@@ -545,45 +545,61 @@
         const subjectInput = contactForm.querySelector('input[name="subject"]');
         const messageInput = contactForm.querySelector('textarea[name="message"]');
         
-        resetErrors([nameInput, emailInput, subjectInput, messageInput]);
+        // Reset all error states
+        [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+          input.classList.remove('is-invalid');
+        });
         
         let isValid = true;
         
-        if (!nameInput.value.trim()) {
+        // Name validation - only letters and spaces allowed
+        const nameValue = nameInput.value.trim();
+        if (!nameValue) {
           showError(nameInput, 'Name is required');
           isValid = false;
-        } else if (nameInput.value.trim().length < 2) {
+        } else if (!/^[a-zA-Z\s]+$/.test(nameValue)) {
+          showError(nameInput, 'Name should only contain letters and spaces');
+          isValid = false;
+        } else if (nameValue.length < 2) {
           showError(nameInput, 'Name must be at least 2 characters');
           isValid = false;
         }
         
-        if (!emailInput.value.trim()) {
+        // Email validation
+        const emailValue = emailInput.value.trim();
+        if (!emailValue) {
           showError(emailInput, 'Email is required');
           isValid = false;
-        } else if (!isValidEmail(emailInput.value.trim())) {
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
           showError(emailInput, 'Please enter a valid email');
           isValid = false;
         }
         
-        if (!subjectInput.value.trim()) {
+        // Subject validation - only letters, spaces and basic punctuation allowed
+        const subjectValue = subjectInput.value.trim();
+        if (!subjectValue) {
           showError(subjectInput, 'Subject is required');
           isValid = false;
-        } else if (subjectInput.value.trim().length < 5) {
+        } else if (!/^[a-zA-Z\s,.!?']+$/.test(subjectValue)) {
+          showError(subjectInput, 'Subject should only contain letters and basic punctuation');
+          isValid = false;
+        } else if (subjectValue.length < 5) {
           showError(subjectInput, 'Subject must be at least 5 characters');
           isValid = false;
         }
         
-        if (!messageInput.value.trim()) {
+        // Message validation
+        const messageValue = messageInput.value.trim();
+        if (!messageValue) {
           showError(messageInput, 'Message is required');
           isValid = false;
-        } else if (messageInput.value.trim().length < 10) {
+        } else if (messageValue.length < 10) {
           showError(messageInput, 'Message must be at least 10 characters');
           isValid = false;
         }
         
         if (isValid) {
           errorMessage.style.display = 'none';
-          errorMessage.textContent = '';
           alert('Form submitted successfully!');
           contactForm.reset();
         } else {
@@ -592,37 +608,17 @@
         }
       });
       
-      function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-      }
-      
       function showError(input, message) {
-        const formGroup = input.closest('.mb-3');
-        if (!formGroup) return;
-        
         input.classList.add('is-invalid');
         
-        let errorElement = formGroup.querySelector('.invalid-feedback');
-        if (!errorElement) {
+        let errorElement = input.nextElementSibling;
+        if (!errorElement || !errorElement.classList.contains('invalid-feedback')) {
           errorElement = document.createElement('div');
           errorElement.className = 'invalid-feedback';
-          formGroup.appendChild(errorElement);
+          input.parentNode.insertBefore(errorElement, input.nextSibling);
         }
         
         errorElement.textContent = message;
-      }
-      function resetErrors(inputs) {
-        inputs.forEach(input => {
-          input.classList.remove('is-invalid');
-          const formGroup = input.closest('.mb-3');
-          if (formGroup) {
-            const errorElement = formGroup.querySelector('.invalid-feedback');
-            if (errorElement) {
-              errorElement.textContent = '';
-            }
-          }
-        });
       }
     });
   </script>
